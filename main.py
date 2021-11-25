@@ -3,7 +3,7 @@ from flask import Flask,request
 from flask import render_template,url_for
 from werkzeug.utils import secure_filename
 from Backend import SteganographyComputation as steg 
-#cwd = os.getcwd()
+cwd = os.getcwd()
 app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = 'assets'
@@ -29,9 +29,9 @@ def hide():
         f.write(secret_msg)
         f.close()
         # Calling encryption module
-        # obj = steg(d, password)
+        obj = steg(d, password)
         # CORRECT DOWNLOAD DIRECTORIES HERE - Generate download link (?)
-        # obj.LSB_hide('assets/msgtohide.txt', 'C:/Users/nextt/Desktop/enc_output.png') 
+        bj.LSB_hide('assets/msgtohide.txt', 'assets/enc_output.png') 
         return render_template("homepage.html",result=True)
     return render_template("homepage.html")
 
@@ -45,12 +45,12 @@ def reveal():
         d = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         steg_image.save(d)
         # Calling decryption module
-        # obj = steg(d, password)
-        # obj.LSB_recover('assets/rec_msg.txt')
-        # f = open('assets/rec_msg.txt', 'r')
-        # result_reveal = str(f.read())
+        obj = steg(d, password)
+        obj.LSB_recover('assets/rec_msg.txt')
+        f = open('assets/rec_msg.txt', 'r')
+        result_reveal = str(f.read())
         # show results
-        # return render_template("homepage.html",result_reveal=result_reveal)
+        return render_template("homepage.html",result_reveal=result_reveal)
     return render_template("homepage.html")
 
 
