@@ -8,6 +8,8 @@ flask = "*"
 pycryptodome = "*"
 numpy = "*"
 pillow = "*"
+gunicorn = "*"
+itsdangerous = "==1.1.0"
 
 [dev-packages]
 
