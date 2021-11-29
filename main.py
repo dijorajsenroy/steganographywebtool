@@ -1,5 +1,5 @@
 import os
-from flask import Flask,request
+from flask import Flask,request, send_file
 from flask import render_template,url_for
 from werkzeug.utils import secure_filename
 from Backend import SteganographyComputation as steg 
@@ -34,6 +34,10 @@ def hide():
         obj.LSB_hide('assets/msgtohide.txt', 'assets/enc_output.png') 
         return render_template("homepage.html",result=True)
     return render_template("homepage.html")
+
+@app.route("/download")
+def download():
+    return send_file("/assets/enc_output.png", as_attachment = True)
 
 @app.route("/reveal",methods=['POST','GET'])
 def reveal():
