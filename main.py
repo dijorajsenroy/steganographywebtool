@@ -31,7 +31,7 @@ def hide():
         # Calling encryption module
         obj = steg(d, password)
         # CORRECT DOWNLOAD DIRECTORIES HERE - Generate download link (?)
-        bj.LSB_hide('assets/msgtohide.txt', 'assets/enc_output.png') 
+        obj.LSB_hide('assets/msgtohide.txt', 'assets/enc_output.png') 
         return render_template("homepage.html",result=True)
     return render_template("homepage.html")
 
