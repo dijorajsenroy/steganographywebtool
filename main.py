@@ -36,7 +36,8 @@ def hide():
 
 @app.route("/download")
 def download():
-    return "<p>The output of the encryption algorithm:</p><br><br><img src=\"assets/enc_output.png\" height = \"600\" width = \"600\">"
+    return render_template("display.html", user_image = 'assets/enc_output.png')
+
 
 @app.route("/reveal",methods=['POST','GET'])
 def reveal():
