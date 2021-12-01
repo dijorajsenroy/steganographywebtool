@@ -32,10 +32,7 @@ def hide():
         # Calling encryption module
         obj = steg(d, password)
         obj.LSB_hide('assets/msgtohide.txt', 'assets/enc_output.png')
-        # checking if encryption successful
-        result = " ".join(list(glob.glob(cwd + 'assets/*')))
-        print(result)
-        return render_template("homepage.html",result=result)
+        return render_template("homepage.html",result=True)
     return render_template("homepage.html")
 
 @app.route("/download")
