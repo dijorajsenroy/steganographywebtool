@@ -4,6 +4,7 @@ from flask import render_template,url_for
 from werkzeug.utils import secure_filename
 from Backend import SteganographyComputation as steg 
 cwd = os.getcwd()
+import glob
 app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = 'assets'
@@ -30,8 +31,11 @@ def hide():
         f.close()
         # Calling encryption module
         obj = steg(d, password)
-        obj.LSB_hide('assets/msgtohide.txt', 'assets/enc_output.png') 
-        return render_template("homepage.html",result=True)
+        obj.LSB_hide('assets/msgtohide.txt', 'assets/enc_output.png')
+        # checking if encryption successful
+        result = " ".join(list(glob.glob(cwd + 'assets/*')))
+        print(result)
+        return render_template("homepage.html",result=result)
     return render_template("homepage.html")
 
 @app.route("/download")
