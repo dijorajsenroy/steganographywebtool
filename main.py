@@ -36,7 +36,7 @@ def hide():
 
 @app.route("/download")
 def download():
-    return render_template("display.html", user_image = 'assets/enc_output.png')
+    return render_template("display.html", user_image = 'assets/test.png')
 
 
 @app.route("/reveal",methods=['POST','GET'])
